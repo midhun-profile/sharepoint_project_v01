@@ -138,8 +138,8 @@ export function SharePointSidebar() {
             onClick={() => setActiveConnectionId(conn.id)}
             className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer relative ${
               isActive
-                ? 'bg-blue-50 ring-2 ring-blue-500 shadow-xs'
-                : 'hover:bg-neutral-100 text-neutral-600'
+                ? 'bg-blue-50 dark:bg-blue-950/60 ring-2 ring-blue-500 shadow-xs'
+                : 'hover:bg-neutral-100 dark:hover:bg-white/10 text-neutral-600 dark:text-slate-300'
             }`}
             aria-label={conn.displayName}
           >
@@ -164,7 +164,7 @@ export function SharePointSidebar() {
           </button>
 
           {/* Floating Tooltip */}
-          <div className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2.5 px-3 py-2 bg-neutral-900 text-white rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-50 min-w-[240px] border border-neutral-800">
+          <div className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2.5 px-3 py-2 bg-neutral-900 dark:bg-slate-900 text-white rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-50 min-w-[240px] border border-neutral-800 dark:border-white/15">
             <div className="flex items-center gap-1.5">
               <span className="text-xs font-bold text-white leading-tight">{conn.displayName}</span>
               {sourceCount > 1 && (
@@ -174,10 +174,10 @@ export function SharePointSidebar() {
               )}
             </div>
 
-            <p className="text-[10px] text-neutral-400 mt-1">
+            <p className="text-[10px] text-neutral-400 dark:text-slate-400 mt-1">
               Connected SharePoint sources:
             </p>
-            <div className="mt-1 space-y-1 pt-1 border-t border-neutral-800 text-[10px] text-neutral-300">
+            <div className="mt-1 space-y-1 pt-1 border-t border-neutral-800 dark:border-white/10 text-[10px] text-neutral-300 dark:text-slate-300">
               {(conn.sources || []).map((s, idx) => (
                 <div key={s.id || idx} className="flex items-center justify-between">
                   <span className="truncate max-w-[150px]">{s.listName}</span>
@@ -185,7 +185,7 @@ export function SharePointSidebar() {
                 </div>
               ))}
             </div>
-            <p className="text-[10px] text-amber-300 font-mono mt-1.5 pt-1 border-t border-neutral-800">
+            <p className="text-[10px] text-amber-300 font-mono mt-1.5 pt-1 border-t border-neutral-800 dark:border-white/10">
               Total {totalFields} fields in single table
             </p>
           </div>
@@ -236,12 +236,12 @@ export function SharePointSidebar() {
         onMouseLeave={() => setHoveredMenuId(null)}
         className={`group/item relative flex items-center justify-between rounded-xl px-2 py-2 transition-all cursor-pointer select-none ${
           isDragging
-            ? 'opacity-30 scale-[0.98] border-dashed border-neutral-400 bg-neutral-100'
+            ? 'opacity-30 scale-[0.98] border-dashed border-neutral-400 dark:border-slate-500 bg-neutral-100 dark:bg-slate-800'
             : isDragOver
-            ? 'border-blue-500 ring-2 ring-blue-500/40 bg-blue-50/70 shadow-sm'
+            ? 'border-blue-500 ring-2 ring-blue-500/40 bg-blue-50/70 dark:bg-blue-950/40 shadow-sm'
             : isActive
-            ? 'bg-blue-50/80 text-blue-900 border border-blue-200/80 shadow-xs'
-            : 'hover:bg-neutral-100/70 text-neutral-700 border border-transparent'
+            ? 'bg-blue-50/80 dark:bg-blue-950/50 text-blue-900 dark:text-blue-200 border border-blue-200/80 dark:border-blue-800/80 shadow-xs'
+            : 'hover:bg-neutral-100/70 dark:hover:bg-white/5 text-neutral-700 dark:text-slate-300 border border-transparent'
         }`}
         onClick={() => setActiveConnectionId(conn.id)}
       >
@@ -252,7 +252,7 @@ export function SharePointSidebar() {
 
         {/* Drag Handle */}
         <div
-          className="cursor-grab active:cursor-grabbing p-0.5 text-neutral-300 hover:text-neutral-600 opacity-0 group-hover/item:opacity-100 transition-opacity flex-shrink-0"
+          className="cursor-grab active:cursor-grabbing p-0.5 text-neutral-300 dark:text-slate-600 hover:text-neutral-600 dark:hover:text-slate-300 opacity-0 group-hover/item:opacity-100 transition-opacity flex-shrink-0"
           title="Drag to reorder menu position"
           onClick={(e) => e.stopPropagation()}
         >
@@ -271,26 +271,26 @@ export function SharePointSidebar() {
             <div className="flex items-center gap-1.5">
               <p
                 className={`text-xs truncate ${
-                  isActive ? 'font-semibold text-neutral-900' : 'font-medium text-neutral-800'
+                  isActive ? 'font-semibold text-neutral-900 dark:text-slate-100' : 'font-medium text-neutral-800 dark:text-slate-200'
                 }`}
                 title={conn.displayName}
               >
                 {conn.displayName}
               </p>
               {sourceCount > 1 && (
-                <span className="px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-blue-100 text-blue-700 border border-blue-200 flex-shrink-0">
+                <span className="px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/80 flex-shrink-0">
                   {sourceCount} SP Lists
                 </span>
               )}
             </div>
 
             {/* Connected Lists summary */}
-            <div className="flex items-center gap-1.5 text-[11px] text-neutral-500 mt-0.5">
-              <span className="truncate max-w-[125px] text-[10px] text-neutral-500">
+            <div className="flex items-center gap-1.5 text-[11px] text-neutral-500 dark:text-slate-400 mt-0.5">
+              <span className="truncate max-w-[125px] text-[10px] text-neutral-500 dark:text-slate-400">
                 {(conn.sources || []).map((s) => s.listName.slice(0, 10)).join(' + ')}
               </span>
               <span>•</span>
-              <span className="text-[10px] font-mono text-neutral-600 bg-neutral-100/90 px-1 rounded">
+              <span className="text-[10px] font-mono text-neutral-600 dark:text-slate-300 bg-neutral-100/90 dark:bg-white/10 px-1 rounded">
                 {totalFields} fields
               </span>
             </div>
@@ -311,8 +311,8 @@ export function SharePointSidebar() {
               e.stopPropagation();
               setOpenMenuDropdownId(isDropdownOpen ? null : conn.id);
             }}
-            className={`p-1 rounded-lg text-neutral-400 hover:text-neutral-800 hover:bg-neutral-200/70 transition-colors cursor-pointer ${
-              isDropdownOpen ? 'bg-neutral-200 text-neutral-900 shadow-2xs' : ''
+            className={`p-1 rounded-lg text-neutral-400 dark:text-slate-400 hover:text-neutral-800 dark:hover:text-slate-100 hover:bg-neutral-200/70 dark:hover:bg-white/10 transition-colors cursor-pointer ${
+              isDropdownOpen ? 'bg-neutral-200 dark:bg-white/15 text-neutral-900 dark:text-white shadow-2xs' : ''
             }`}
             title="Menu Options"
             aria-expanded={isDropdownOpen}
@@ -324,7 +324,7 @@ export function SharePointSidebar() {
           {isDropdownOpen && (
             <div
               id={`dropdown-menu-${conn.id}`}
-              className="absolute right-0 top-full mt-1 w-44 bg-white rounded-xl shadow-xl border border-neutral-200/90 py-1 z-50 animate-in fade-in zoom-in-95 duration-100 text-neutral-800"
+              className="absolute right-0 top-full mt-1 w-44 bg-white dark:bg-[#1a2436] rounded-xl shadow-xl border border-neutral-200/90 dark:border-white/15 py-1 z-50 animate-in fade-in zoom-in-95 duration-100 text-neutral-800 dark:text-slate-100"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Option 1: Edit Menu */}
@@ -335,9 +335,9 @@ export function SharePointSidebar() {
                   setOpenMenuDropdownId(null);
                   openEditModal(conn.id);
                 }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-neutral-700 hover:text-blue-700 hover:bg-blue-50 transition-colors cursor-pointer text-left font-medium"
+                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-neutral-700 dark:text-slate-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-white/5 transition-colors cursor-pointer text-left font-medium"
               >
-                <Pencil className="w-3.5 h-3.5 text-neutral-400" />
+                <Pencil className="w-3.5 h-3.5 text-neutral-400 dark:text-slate-400" />
                 <span>Edit Menu</span>
               </button>
 
@@ -349,9 +349,9 @@ export function SharePointSidebar() {
                 onClick={() => {
                   moveConnection(conn.id, 'up');
                 }}
-                className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer text-left"
+                className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-neutral-700 dark:text-slate-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer text-left"
               >
-                <ArrowUp className="w-3.5 h-3.5 text-neutral-400" />
+                <ArrowUp className="w-3.5 h-3.5 text-neutral-400 dark:text-slate-400" />
                 <span>Move Up</span>
               </button>
 
@@ -363,13 +363,13 @@ export function SharePointSidebar() {
                 onClick={() => {
                   moveConnection(conn.id, 'down');
                 }}
-                className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer text-left"
+                className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-neutral-700 dark:text-slate-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer text-left"
               >
-                <ArrowDown className="w-3.5 h-3.5 text-neutral-400" />
+                <ArrowDown className="w-3.5 h-3.5 text-neutral-400 dark:text-slate-400" />
                 <span>Move Down</span>
               </button>
 
-              <div className="my-1 border-t border-neutral-100" />
+              <div className="my-1 border-t border-neutral-100 dark:border-white/10" />
 
               {/* Option 4: Delete Menu */}
               <button
@@ -380,7 +380,7 @@ export function SharePointSidebar() {
                   setOpenMenuDropdownId(null);
                   deleteConnection(conn.id);
                 }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer text-left font-medium"
+                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer text-left font-medium"
                 title={connections.length <= 1 ? 'At least one menu must remain configured' : 'Delete menu'}
               >
                 <Trash2 className="w-3.5 h-3.5 text-rose-500" />
@@ -397,28 +397,28 @@ export function SharePointSidebar() {
     <aside
       id="sharepoint-sidebar"
       aria-label="SharePoint Multi-Source Menus Navigation"
-      className={`relative h-screen bg-white border-r border-neutral-200/90 flex flex-col flex-shrink-0 transition-all duration-200 ease-in-out select-none z-30 ${
+      className={`relative h-screen bg-white dark:bg-[#131d2e] border-r border-neutral-200/90 dark:border-white/10 flex flex-col flex-shrink-0 transition-all duration-200 ease-in-out select-none z-30 ${
         sidebarCollapsed ? 'w-16' : 'w-72 lg:w-80'
       }`}
     >
       {/* 1. Header: Branding & Toggle */}
-      <div className="flex items-center justify-between h-14 px-3.5 border-b border-neutral-200/80 flex-shrink-0 bg-neutral-50/40">
+      <div className="flex items-center justify-between h-14 px-3.5 border-b border-neutral-200/80 dark:border-white/10 flex-shrink-0 bg-neutral-50/40 dark:bg-[#0f172a]/60">
         {!sidebarCollapsed ? (
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold shadow-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-teal-600 dark:bg-teal-500 flex items-center justify-center text-white font-bold shadow-xs flex-shrink-0">
               <span className="text-sm tracking-tighter">SP</span>
             </div>
             <div className="min-w-0">
-              <h1 className="text-xs font-bold text-neutral-900 truncate tracking-tight uppercase">
+              <h1 className="text-xs font-bold text-neutral-900 dark:text-slate-100 truncate tracking-tight uppercase">
                 SharePoint Hub
               </h1>
-              <p className="text-[11px] text-neutral-500 truncate">Multi-Source Menus</p>
+              <p className="text-[11px] text-neutral-500 dark:text-slate-400 truncate">Multi-Source Menus</p>
             </div>
           </div>
         ) : (
           <div className="mx-auto">
             <div
-              className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold shadow-xs cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-teal-600 dark:bg-teal-500 flex items-center justify-center text-white font-bold shadow-xs cursor-pointer"
               title="SharePoint Hub"
               onClick={toggleSidebar}
             >
@@ -431,7 +431,7 @@ export function SharePointSidebar() {
           id="btn-toggle-sidebar"
           type="button"
           onClick={toggleSidebar}
-          className="p-1.5 rounded-lg text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/60 transition-colors cursor-pointer"
+          className="p-1.5 rounded-lg text-neutral-500 dark:text-slate-400 hover:text-neutral-900 dark:hover:text-slate-100 hover:bg-neutral-200/60 dark:hover:bg-white/10 transition-colors cursor-pointer"
           title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
@@ -445,7 +445,7 @@ export function SharePointSidebar() {
 
       {/* 2. Top Action & Search (Expanded mode only) */}
       {!sidebarCollapsed ? (
-        <div className="p-3 border-b border-neutral-200/60 space-y-2.5 bg-neutral-50/20 flex-shrink-0">
+        <div className="p-3 border-b border-neutral-200/60 dark:border-white/10 space-y-2.5 bg-neutral-50/20 dark:bg-transparent flex-shrink-0">
           <button
             id="btn-add-connection-expanded"
             type="button"
@@ -457,19 +457,19 @@ export function SharePointSidebar() {
           </button>
 
           <div className="relative">
-            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-400" />
+            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-slate-500" />
             <input
               id="sidebar-connection-search"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search menus or lists..."
-              className="w-full pl-8 pr-3 py-1.5 text-xs bg-neutral-100/70 hover:bg-neutral-100 focus:bg-white border border-neutral-200/80 focus:border-blue-500 rounded-lg outline-none transition-all placeholder:text-neutral-400"
+              className="w-full pl-8 pr-3 py-1.5 text-xs bg-neutral-100/70 hover:bg-neutral-100 focus:bg-white dark:bg-[#0b1120] dark:hover:bg-[#0f172a] dark:focus:bg-[#0f172a] text-neutral-900 dark:text-slate-100 border border-neutral-200/80 dark:border-white/15 focus:border-blue-500 rounded-lg outline-none transition-all placeholder:text-neutral-400 dark:placeholder:text-slate-500"
             />
           </div>
         </div>
       ) : (
-        <div className="p-2 border-b border-neutral-200/60 flex flex-col items-center flex-shrink-0">
+        <div className="p-2 border-b border-neutral-200/60 dark:border-white/10 flex flex-col items-center flex-shrink-0">
           <button
             id="btn-add-connection-collapsed"
             type="button"
@@ -479,7 +479,7 @@ export function SharePointSidebar() {
             aria-label="Create Menu"
           >
             <Plus className="w-4 h-4" />
-            <span className="pointer-events-none absolute left-full ml-2 px-2.5 py-1 bg-neutral-900 text-white text-xs rounded-md shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 transition-opacity">
+            <span className="pointer-events-none absolute left-full ml-2 px-2.5 py-1 bg-neutral-900 dark:bg-slate-900 text-white text-xs rounded-md shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 transition-opacity">
               + Create Menu
             </span>
           </button>
@@ -490,9 +490,9 @@ export function SharePointSidebar() {
       <div className="flex-1 overflow-y-auto px-2 py-3 space-y-4">
         {filteredConnections.length === 0 ? (
           <div className="text-center py-8 px-3">
-            <Database className="w-6 h-6 text-neutral-300 mx-auto mb-2" />
-            <p className="text-xs font-medium text-neutral-600">No menus match</p>
-            <p className="text-[11px] text-neutral-400 mt-0.5">Try a different search query</p>
+            <Database className="w-6 h-6 text-neutral-300 dark:text-slate-600 mx-auto mb-2" />
+            <p className="text-xs font-medium text-neutral-600 dark:text-slate-400">No menus match</p>
+            <p className="text-[11px] text-neutral-400 dark:text-slate-500 mt-0.5">Try a different search query</p>
           </div>
         ) : (
           <>
@@ -504,32 +504,32 @@ export function SharePointSidebar() {
                     id="btn-toggle-multi-views"
                     type="button"
                     onClick={toggleMultiViews}
-                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/80 transition-all cursor-pointer group"
+                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-neutral-600 dark:text-slate-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-white/5 transition-all cursor-pointer group"
                     aria-expanded={!isMultiCollapsed}
                     aria-controls="multi-views-container"
                     title={isMultiCollapsed ? 'Click to expand Multi-SharePoint Views' : 'Click to collapse Multi-SharePoint Views'}
                   >
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <span className="text-neutral-400 group-hover:text-neutral-700 transition-transform">
+                      <span className="text-neutral-400 dark:text-slate-500 group-hover:text-neutral-700 dark:group-hover:text-slate-300 transition-transform">
                         {isMultiCollapsed ? (
                           <ChevronRight className="w-3.5 h-3.5" />
                         ) : (
                           <ChevronDown className="w-3.5 h-3.5" />
                         )}
                       </span>
-                      <Layers className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-700 truncate">
+                      <Layers className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-700 dark:text-slate-300 truncate">
                         Multi-SharePoint Views
                       </span>
                     </div>
 
                     <div className="flex items-center gap-1.5 flex-shrink-0">
                       {isMultiCollapsed && isMultiActive && (
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] font-semibold bg-blue-100 text-blue-800 border border-blue-200">
+                        <span className="px-1.5 py-0.2 rounded-full text-[9px] font-semibold bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
                           Active
                         </span>
                       )}
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-50 text-blue-700 font-semibold border border-blue-200">
+                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-semibold border border-blue-200 dark:border-blue-800">
                         {multiSourceMenus.length}
                       </span>
                     </div>
@@ -539,19 +539,19 @@ export function SharePointSidebar() {
                     <button
                       type="button"
                       onClick={toggleMultiViews}
-                      className="w-10 h-7 mx-auto rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer group relative"
+                      className="w-10 h-7 mx-auto rounded-lg flex items-center justify-center text-neutral-400 dark:text-slate-500 hover:text-neutral-700 dark:hover:text-slate-200 hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors cursor-pointer group relative"
                       title={isMultiCollapsed ? `Expand Multi-SharePoint Views (${multiSourceMenus.length})` : `Collapse Multi-SharePoint Views (${multiSourceMenus.length})`}
                       aria-label="Toggle Multi-SharePoint Views"
                     >
                       <div className="flex items-center gap-0.5">
-                        <Layers className="w-3.5 h-3.5 text-blue-600" />
+                        <Layers className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                         {isMultiCollapsed ? (
-                          <ChevronRight className="w-2.5 h-2.5 text-neutral-400" />
+                          <ChevronRight className="w-2.5 h-2.5 text-neutral-400 dark:text-slate-500" />
                         ) : (
-                          <ChevronDown className="w-2.5 h-2.5 text-neutral-400" />
+                          <ChevronDown className="w-2.5 h-2.5 text-neutral-400 dark:text-slate-500" />
                         )}
                       </div>
-                      <span className="pointer-events-none absolute left-full ml-2 px-2 py-1 bg-neutral-900 text-white text-[10px] rounded shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 transition-opacity">
+                      <span className="pointer-events-none absolute left-full ml-2 px-2 py-1 bg-neutral-900 dark:bg-slate-900 text-white text-[10px] rounded shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 transition-opacity">
                         {isMultiCollapsed ? `Expand Multi-SharePoint Views (${multiSourceMenus.length})` : `Collapse Multi-SharePoint Views (${multiSourceMenus.length})`}
                       </span>
                     </button>
@@ -576,55 +576,55 @@ export function SharePointSidebar() {
                     id="btn-toggle-single-views"
                     type="button"
                     onClick={toggleSingleViews}
-                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/80 transition-all cursor-pointer group"
+                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-neutral-600 dark:text-slate-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-white/5 transition-all cursor-pointer group"
                     aria-expanded={!isSingleCollapsed}
                     aria-controls="single-views-container"
                     title={isSingleCollapsed ? 'Click to expand Individual List Views' : 'Click to collapse Individual List Views'}
                   >
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <span className="text-neutral-400 group-hover:text-neutral-700 transition-transform">
+                      <span className="text-neutral-400 dark:text-slate-500 group-hover:text-neutral-700 dark:group-hover:text-slate-300 transition-transform">
                         {isSingleCollapsed ? (
                           <ChevronRight className="w-3.5 h-3.5" />
                         ) : (
                           <ChevronDown className="w-3.5 h-3.5" />
                         )}
                       </span>
-                      <TableProperties className="w-3.5 h-3.5 text-neutral-500 flex-shrink-0" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-700 truncate">
+                      <TableProperties className="w-3.5 h-3.5 text-neutral-500 dark:text-slate-400 flex-shrink-0" />
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-700 dark:text-slate-300 truncate">
                         Individual List Views
                       </span>
                     </div>
 
                     <div className="flex items-center gap-1.5 flex-shrink-0">
                       {isSingleCollapsed && isSingleActive && (
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] font-semibold bg-neutral-200 text-neutral-800 border border-neutral-300">
+                        <span className="px-1.5 py-0.2 rounded-full text-[9px] font-semibold bg-neutral-200 dark:bg-white/10 text-neutral-800 dark:text-slate-200 border border-neutral-300 dark:border-white/10">
                           Active
                         </span>
                       )}
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-neutral-100 text-neutral-600 font-medium border border-neutral-200">
+                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-neutral-100 dark:bg-white/5 text-neutral-600 dark:text-slate-400 font-medium border border-neutral-200 dark:border-white/10">
                         {singleSourceMenus.length}
                       </span>
                     </div>
                   </button>
                 ) : (
                   <div className="py-1">
-                    <div className="w-6 h-px bg-neutral-200 mx-auto my-1" />
+                    <div className="w-6 h-px bg-neutral-200 dark:bg-white/10 mx-auto my-1" />
                     <button
                       type="button"
                       onClick={toggleSingleViews}
-                      className="w-10 h-7 mx-auto rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer group relative"
+                      className="w-10 h-7 mx-auto rounded-lg flex items-center justify-center text-neutral-400 dark:text-slate-500 hover:text-neutral-700 dark:hover:text-slate-200 hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors cursor-pointer group relative"
                       title={isSingleCollapsed ? `Expand Individual List Views (${singleSourceMenus.length})` : `Collapse Individual List Views (${singleSourceMenus.length})`}
                       aria-label="Toggle Individual List Views"
                     >
                       <div className="flex items-center gap-0.5">
-                        <TableProperties className="w-3.5 h-3.5 text-neutral-500" />
+                        <TableProperties className="w-3.5 h-3.5 text-neutral-500 dark:text-slate-400" />
                         {isSingleCollapsed ? (
-                          <ChevronRight className="w-2.5 h-2.5 text-neutral-400" />
+                          <ChevronRight className="w-2.5 h-2.5 text-neutral-400 dark:text-slate-500" />
                         ) : (
-                          <ChevronDown className="w-2.5 h-2.5 text-neutral-400" />
+                          <ChevronDown className="w-2.5 h-2.5 text-neutral-400 dark:text-slate-500" />
                         )}
                       </div>
-                      <span className="pointer-events-none absolute left-full ml-2 px-2 py-1 bg-neutral-900 text-white text-[10px] rounded shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 transition-opacity">
+                      <span className="pointer-events-none absolute left-full ml-2 px-2 py-1 bg-neutral-900 dark:bg-slate-900 text-white text-[10px] rounded shadow-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 transition-opacity">
                         {isSingleCollapsed ? `Expand Individual List Views (${singleSourceMenus.length})` : `Collapse Individual List Views (${singleSourceMenus.length})`}
                       </span>
                     </button>
@@ -645,7 +645,7 @@ export function SharePointSidebar() {
       </div>
 
       {/* 4. Footer: Reset Defaults & Version */}
-      <div className="p-3 border-t border-neutral-200/80 bg-neutral-50/50 flex-shrink-0 flex items-center justify-between">
+      <div className="p-3 border-t border-neutral-200/80 dark:border-white/10 bg-neutral-50/50 dark:bg-[#0f172a]/60 flex-shrink-0 flex items-center justify-between">
         {!sidebarCollapsed ? (
           <>
             <button
@@ -654,13 +654,13 @@ export function SharePointSidebar() {
                 resetToDefaults();
                 useDemoDataStore.getState().resetConnectionRows();
               }}
-              className="inline-flex items-center gap-1.5 text-[11px] text-neutral-500 hover:text-neutral-800 hover:bg-neutral-200/60 px-2 py-1 rounded-md transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[11px] text-neutral-500 dark:text-slate-400 hover:text-neutral-800 dark:hover:text-slate-200 hover:bg-neutral-200/60 dark:hover:bg-white/10 px-2 py-1 rounded-md transition-colors cursor-pointer"
               title="Reset to default multi-source demo menus"
             >
               <RotateCcw className="w-3 h-3" />
               <span>Reset Presets</span>
             </button>
-            <span className="text-[10px] text-neutral-400 font-mono">Multi-SP v2</span>
+            <span className="text-[10px] text-neutral-400 dark:text-slate-500 font-mono">Multi-SP v2</span>
           </>
         ) : (
           <button
@@ -669,7 +669,7 @@ export function SharePointSidebar() {
               resetToDefaults();
               useDemoDataStore.getState().resetConnectionRows();
             }}
-            className="mx-auto p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-200/60 transition-colors cursor-pointer"
+            className="mx-auto p-1.5 rounded-lg text-neutral-400 dark:text-slate-500 hover:text-neutral-700 dark:hover:text-slate-200 hover:bg-neutral-200/60 dark:hover:bg-white/10 transition-colors cursor-pointer"
             title="Reset to default presets"
           >
             <RotateCcw className="w-3.5 h-3.5" />

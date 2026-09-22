@@ -358,26 +358,26 @@ export function ConnectionConfigModal() {
   return (
     <div
       id="connection-config-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-neutral-900/60 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-neutral-900/60 dark:bg-black/70 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
     >
       <div
         id="connection-config-modal-container"
-        className="bg-white rounded-2xl shadow-2xl border border-neutral-200/80 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden text-neutral-900"
+        className="bg-white dark:bg-[#131d2e] rounded-2xl shadow-2xl border border-neutral-200/80 dark:border-white/15 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden text-neutral-900 dark:text-slate-100"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
       >
         {/* 1. Modal Top Header */}
-        <div className="flex items-center justify-between px-6 py-3.5 border-b border-neutral-200 bg-neutral-50/60 flex-shrink-0">
+        <div className="flex items-center justify-between px-6 py-3.5 border-b border-neutral-200 dark:border-white/10 bg-neutral-50/60 dark:bg-[#0f172a] flex-shrink-0">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-blue-100 text-blue-700">
+            <div className="p-2 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300">
               <SharePointIcon name={selectedIcon} color={selectedColor} className="w-5 h-5" />
             </div>
             <div>
-              <h2 id="modal-title" className="text-base font-semibold text-neutral-900">
+              <h2 id="modal-title" className="text-base font-semibold text-neutral-900 dark:text-slate-100">
                 {isEditing ? 'Configure Menu & Connected SharePoint Lists' : 'Create Menu & Connect SharePoint Lists'}
               </h2>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 dark:text-slate-400">
                 Connect multiple SharePoint lists and select fields from each to display in a single consolidated table
               </p>
             </div>
@@ -386,7 +386,7 @@ export function ConnectionConfigModal() {
             id="btn-close-modal"
             type="button"
             onClick={closeModal}
-            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-200/60 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 dark:hover:text-slate-200 hover:bg-neutral-200/60 dark:hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
@@ -396,9 +396,9 @@ export function ConnectionConfigModal() {
         {/* 2. Scrollable Body */}
         <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
           {/* Section A: Menu Identity & Branding */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-neutral-200/80">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-neutral-200/80 dark:border-white/10">
             <div className="sm:col-span-2 space-y-1.5">
-              <label htmlFor="input-menu-title" className="block text-xs font-semibold text-neutral-700">
+              <label htmlFor="input-menu-title" className="block text-xs font-semibold text-neutral-700 dark:text-slate-200">
                 Menu Item Display Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -410,10 +410,10 @@ export function ConnectionConfigModal() {
                   setFormErrors((prev) => ({ ...prev, displayName: undefined }));
                 }}
                 placeholder="e.g., Executive 360: Projects & IT Fleet"
-                className={`w-full px-3 py-2 text-sm bg-white border rounded-xl outline-none transition-all ${
+                className={`w-full px-3 py-2 text-sm bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder-neutral-400 dark:placeholder-slate-500 border rounded-xl outline-none transition-all ${
                   formErrors.displayName
                     ? 'border-red-400 ring-2 ring-red-100'
-                    : 'border-neutral-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100'
+                    : 'border-neutral-300 dark:border-white/15 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30'
                 }`}
               />
               {formErrors.displayName && (
@@ -423,23 +423,23 @@ export function ConnectionConfigModal() {
 
             {/* Icon & Color Accent */}
             <div className="space-y-1.5">
-              <label className="block text-xs font-semibold text-neutral-700">Icon & Color Accent</label>
+              <label className="block text-xs font-semibold text-neutral-700 dark:text-slate-200">Icon & Color Accent</label>
               <div className="flex items-center gap-2">
                 {/* Icon Selector */}
                 <select
                   value={selectedIcon}
                   onChange={(e) => setSelectedIcon(e.target.value)}
-                  className="px-2.5 py-2 text-xs bg-white border border-neutral-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none flex-1"
+                  className="px-2.5 py-2 text-xs bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 border border-neutral-300 dark:border-white/15 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 outline-none flex-1"
                 >
                   {Object.entries(AVAILABLE_ICONS).map(([iconName, iconData]) => (
-                    <option key={iconName} value={iconName}>
+                    <option key={iconName} value={iconName} className="bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100">
                       {iconData.label}
                     </option>
                   ))}
                 </select>
 
                 {/* Color Selector */}
-                <div className="flex items-center gap-1 bg-neutral-100 p-1 rounded-xl border border-neutral-200">
+                <div className="flex items-center gap-1 bg-neutral-100 dark:bg-[#0f172a] p-1 rounded-xl border border-neutral-200 dark:border-white/10">
                   {(['blue', 'indigo', 'emerald', 'purple', 'amber'] as ConnectionColor[]).map((c) => (
                     <button
                       key={c}
@@ -447,7 +447,7 @@ export function ConnectionConfigModal() {
                       onClick={() => setSelectedColor(c)}
                       className={`w-5 h-5 rounded-full transition-all cursor-pointer ${
                         COLOR_VARIANTS[c].badge
-                      } ${selectedColor === c ? 'ring-2 ring-neutral-800 scale-110' : 'opacity-70 hover:opacity-100'}`}
+                      } ${selectedColor === c ? 'ring-2 ring-neutral-800 dark:ring-white scale-110' : 'opacity-70 hover:opacity-100'}`}
                       title={c}
                     />
                   ))}
@@ -461,17 +461,17 @@ export function ConnectionConfigModal() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-neutral-900">
+                  <h3 className="text-sm font-semibold text-neutral-900 dark:text-slate-100">
                     Connected SharePoint Lists
                   </h3>
-                  <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200">
+                  <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60">
                     {sources.length} {sources.length === 1 ? 'SharePoint List' : 'SharePoint Lists'} Connected
                   </span>
-                  <span className="text-xs text-neutral-500 font-mono">
+                  <span className="text-xs text-neutral-500 dark:text-slate-400 font-mono">
                     ({totalSelectedColumnsAcrossSources} total fields selected)
                   </span>
                 </div>
-                <p className="text-xs text-neutral-500 mt-0.5">
+                <p className="text-xs text-neutral-500 dark:text-slate-400 mt-0.5">
                   Connect multiple SharePoint sites/lists. Select the specific fields from each list to show side-by-side in this menu's table.
                 </p>
               </div>
@@ -488,13 +488,13 @@ export function ConnectionConfigModal() {
             </div>
 
             {formErrors.sources && (
-              <p className="text-xs text-red-500 bg-red-50 p-2 rounded-lg border border-red-200">
+              <p className="text-xs text-red-500 bg-red-50 dark:bg-red-950/60 p-2 rounded-lg border border-red-200 dark:border-red-800/60">
                 {formErrors.sources}
               </p>
             )}
 
             {/* Sources Tabs / Pills for Fast Switching & Visibility */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 border-b border-neutral-200">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 border-b border-neutral-200 dark:border-white/10">
               {sources.map((src, index) => {
                 const isActive = index === activeSourceIndex;
                 const fieldCount = src.selectedColumnNames?.length || 0;
@@ -508,8 +508,8 @@ export function ConnectionConfigModal() {
                     onClick={() => setActiveSourceIndex(index)}
                     className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border transition-all cursor-pointer flex-shrink-0 ${
                       isActive
-                        ? 'bg-blue-50 text-blue-900 border-blue-300 shadow-xs ring-1 ring-blue-300'
-                        : 'bg-neutral-50 text-neutral-600 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300'
+                        ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-900 dark:text-blue-200 border-blue-300 dark:border-blue-700 shadow-xs ring-1 ring-blue-300 dark:ring-blue-700'
+                        : 'bg-neutral-50 dark:bg-[#0f172a] text-neutral-600 dark:text-slate-400 border-neutral-200 dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-white/5 hover:border-neutral-300 dark:hover:border-white/20'
                     }`}
                   >
                     <span
@@ -531,7 +531,7 @@ export function ConnectionConfigModal() {
                     <span className="truncate max-w-[130px]">
                       {src.listName}
                     </span>
-                    <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-white border border-neutral-200 text-neutral-600">
+                    <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-white dark:bg-[#1a2436] border border-neutral-200 dark:border-white/15 text-neutral-600 dark:text-slate-300">
                       {fieldCount} fields
                     </span>
 
@@ -542,7 +542,7 @@ export function ConnectionConfigModal() {
                           e.stopPropagation();
                           handleRemoveSource(index);
                         }}
-                        className="ml-1 p-0.5 rounded-full hover:bg-neutral-200/80 text-neutral-400 hover:text-red-600"
+                        className="ml-1 p-0.5 rounded-full hover:bg-neutral-200/80 dark:hover:bg-white/10 text-neutral-400 hover:text-red-600 dark:hover:text-red-400"
                         title="Disconnect this SharePoint list"
                       >
                         <X className="w-3.5 h-3.5" />
@@ -556,13 +556,13 @@ export function ConnectionConfigModal() {
 
           {/* Section C: Active SharePoint Source Configuration Panel */}
           {currentActiveSource && (
-            <div className="bg-neutral-50/70 rounded-2xl border border-neutral-200/90 p-4 sm:p-5 space-y-4">
-              <div className="flex items-center justify-between gap-2 border-b border-neutral-200/70 pb-3">
+            <div className="bg-neutral-50/70 dark:bg-[#0f172a]/70 rounded-2xl border border-neutral-200/90 dark:border-white/10 p-4 sm:p-5 space-y-4">
+              <div className="flex items-center justify-between gap-2 border-b border-neutral-200/70 dark:border-white/10 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-neutral-900 text-white">
+                  <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-neutral-900 dark:bg-white/10 text-white dark:text-slate-200">
                     SharePoint Source #{activeSourceIndex + 1}
                   </span>
-                  <span className="text-xs font-medium text-neutral-600">
+                  <span className="text-xs font-medium text-neutral-600 dark:text-slate-400">
                     Target Site & List
                   </span>
                 </div>
@@ -571,7 +571,7 @@ export function ConnectionConfigModal() {
                   <button
                     type="button"
                     onClick={() => handleRemoveSource(activeSourceIndex)}
-                    className="inline-flex items-center gap-1 text-xs text-red-600 hover:text-red-700 hover:bg-red-50 px-2 py-1 rounded-lg transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs text-red-600 dark:text-red-400 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/60 px-2 py-1 rounded-lg transition-colors cursor-pointer"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Disconnect this Source</span>
@@ -583,55 +583,55 @@ export function ConnectionConfigModal() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Target Site */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-neutral-700">
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-slate-200">
                     SharePoint Site Target
                   </label>
                   <select
                     value={currentActiveSource.siteId}
                     onChange={(e) => handleSourceSiteChange(activeSourceIndex, e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-white border border-neutral-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none"
+                    className="w-full px-3 py-2 text-xs bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 border border-neutral-300 dark:border-white/15 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 outline-none"
                   >
                     {SHAREPOINT_SITE_PRESETS.map((site) => (
-                      <option key={site.id} value={site.id}>
+                      <option key={site.id} value={site.id} className="bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100">
                         {site.name} ({site.shortCode})
                       </option>
                     ))}
                   </select>
-                  <p className="text-[11px] text-neutral-400 font-mono truncate">
+                  <p className="text-[11px] text-neutral-400 dark:text-slate-500 font-mono truncate">
                     {currentActiveSource.siteUrl}
                   </p>
                 </div>
 
                 {/* Target List */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-neutral-700">
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-slate-200">
                     Target SharePoint List
                   </label>
                   <select
                     value={currentActiveSource.listId}
                     onChange={(e) => handleSourceListChange(activeSourceIndex, e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-white border border-neutral-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none"
+                    className="w-full px-3 py-2 text-xs bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 border border-neutral-300 dark:border-white/15 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 outline-none"
                   >
                     {DEMO_SHAREPOINT_LISTS.map((list) => (
-                      <option key={list.id} value={list.id}>
+                      <option key={list.id} value={list.id} className="bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100">
                         {list.displayName} ({list.columns.length} schema fields)
                       </option>
                     ))}
                   </select>
-                  <p className="text-[11px] text-neutral-500 truncate">
+                  <p className="text-[11px] text-neutral-500 dark:text-slate-400 truncate">
                     {currentActiveListDef.description || 'Target SharePoint List'}
                   </p>
                 </div>
               </div>
 
               {/* Field / Column Selection Toolbar for this Source */}
-              <div className="pt-2 border-t border-neutral-200/70 space-y-3">
+              <div className="pt-2 border-t border-neutral-200/70 dark:border-white/10 space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-700">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-700 dark:text-slate-200">
                       Select Fields from {currentActiveSource.listName}
                     </h4>
-                    <p className="text-[11px] text-neutral-500">
+                    <p className="text-[11px] text-neutral-500 dark:text-slate-400">
                       {currentActiveSource.selectedColumnNames?.length || 0} of {currentActiveListDef.columns.length} fields selected from this list
                     </p>
                   </div>
@@ -640,21 +640,21 @@ export function ConnectionConfigModal() {
                     <button
                       type="button"
                       onClick={() => handleSelectAllColumns(activeSourceIndex)}
-                      className="px-2 py-1 rounded-lg text-xs font-medium bg-white hover:bg-neutral-100 border border-neutral-200 text-neutral-700 cursor-pointer"
+                      className="px-2 py-1 rounded-lg text-xs font-medium bg-white dark:bg-[#1a2436] hover:bg-neutral-100 dark:hover:bg-white/10 border border-neutral-200 dark:border-white/15 text-neutral-700 dark:text-slate-300 cursor-pointer"
                     >
                       Select All
                     </button>
                     <button
                       type="button"
                       onClick={() => handleSelectQuickColumns(activeSourceIndex)}
-                      className="px-2 py-1 rounded-lg text-xs font-medium bg-white hover:bg-neutral-100 border border-neutral-200 text-neutral-700 cursor-pointer"
+                      className="px-2 py-1 rounded-lg text-xs font-medium bg-white dark:bg-[#1a2436] hover:bg-neutral-100 dark:hover:bg-white/10 border border-neutral-200 dark:border-white/15 text-neutral-700 dark:text-slate-300 cursor-pointer"
                     >
                       First 5
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDeselectAllColumns(activeSourceIndex)}
-                      className="px-2 py-1 rounded-lg text-xs font-medium bg-white hover:bg-neutral-100 border border-neutral-200 text-neutral-500 hover:text-neutral-700 cursor-pointer"
+                      className="px-2 py-1 rounded-lg text-xs font-medium bg-white dark:bg-[#1a2436] hover:bg-neutral-100 dark:hover:bg-white/10 border border-neutral-200 dark:border-white/15 text-neutral-500 dark:text-slate-400 hover:text-neutral-700 dark:hover:text-slate-200 cursor-pointer"
                     >
                       Clear
                     </button>
@@ -663,7 +663,7 @@ export function ConnectionConfigModal() {
 
                 {/* Field Search Filter */}
                 <div className="relative">
-                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-slate-500" />
                   <input
                     type="text"
                     value={columnSearchQueries[currentActiveSource.id] || ''}
@@ -674,12 +674,12 @@ export function ConnectionConfigModal() {
                       })
                     }
                     placeholder={`Search available fields in ${currentActiveSource.listName}...`}
-                    className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-neutral-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none"
+                    className="w-full pl-8 pr-3 py-1.5 text-xs bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder-neutral-400 dark:placeholder-slate-500 border border-neutral-200 dark:border-white/15 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 outline-none"
                   />
                 </div>
 
                 {/* Available Fields Grid for this Source */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-56 overflow-y-auto p-1 bg-white rounded-xl border border-neutral-200/80">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-56 overflow-y-auto p-1 bg-white dark:bg-[#131d2e] rounded-xl border border-neutral-200/80 dark:border-white/10">
                   {filteredActiveColumns.map((colDef) => {
                     const isSelected = (currentActiveSource.selectedColumnNames || []).includes(
                       colDef.name
@@ -692,8 +692,8 @@ export function ConnectionConfigModal() {
                         onClick={() => handleToggleColumn(activeSourceIndex, colDef.name)}
                         className={`flex items-center justify-between p-2 rounded-lg border text-xs cursor-pointer select-none transition-all ${
                           isSelected
-                            ? 'bg-blue-50/90 border-blue-300 text-blue-900 shadow-2xs font-medium'
-                            : 'bg-white border-neutral-200/80 text-neutral-700 hover:bg-neutral-50'
+                            ? 'bg-blue-50/90 dark:bg-blue-950/60 border-blue-300 dark:border-blue-700 text-blue-900 dark:text-blue-200 shadow-2xs font-medium'
+                            : 'bg-white dark:bg-[#1a2436] border-neutral-200/80 dark:border-white/10 text-neutral-700 dark:text-slate-200 hover:bg-neutral-50 dark:hover:bg-white/5'
                         }`}
                       >
                         <div className="flex items-center gap-2 min-w-0 pr-1">
@@ -701,7 +701,7 @@ export function ConnectionConfigModal() {
                             className={`w-4 h-4 rounded flex items-center justify-center border transition-all flex-shrink-0 ${
                               isSelected
                                 ? 'bg-blue-600 border-blue-600 text-white'
-                                : 'border-neutral-300 bg-white'
+                                : 'border-neutral-300 dark:border-white/20 bg-white dark:bg-[#131d2e]'
                             }`}
                           >
                             {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
@@ -711,7 +711,7 @@ export function ConnectionConfigModal() {
                           </span>
                         </div>
 
-                        <span className="text-[10px] font-mono px-1 py-0.2 rounded bg-neutral-100 text-neutral-500 flex-shrink-0">
+                        <span className="text-[10px] font-mono px-1 py-0.2 rounded bg-neutral-100 dark:bg-white/10 text-neutral-500 dark:text-slate-400 flex-shrink-0">
                           {fieldType}
                         </span>
                       </div>
@@ -723,25 +723,25 @@ export function ConnectionConfigModal() {
           )}
 
           {/* Section D: Single Consolidated Table Columns Live Preview */}
-          <div className="bg-neutral-100/70 rounded-2xl border border-neutral-200/80 p-4 space-y-2.5">
+          <div className="bg-neutral-100/70 dark:bg-[#0f172a]/70 rounded-2xl border border-neutral-200/80 dark:border-white/10 p-4 space-y-2.5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-blue-600" />
-                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-800">
+                <Layers className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-800 dark:text-slate-200">
                   Single Table Combined Schema Preview
                 </h4>
               </div>
-              <span className="text-xs font-mono font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+              <span className="text-xs font-mono font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-800/60">
                 {totalSelectedColumnsAcrossSources} total columns in single table
               </span>
             </div>
 
-            <p className="text-[11px] text-neutral-500">
+            <p className="text-[11px] text-neutral-500 dark:text-slate-400">
               The single table will display all selected fields from your {sources.length} connected SharePoint lists. The first column is locked sticky left and the last column is locked sticky right.
             </p>
 
             {/* Chips of combined columns */}
-            <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-2 bg-white rounded-xl border border-neutral-200">
+            <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-2 bg-white dark:bg-[#131d2e] rounded-xl border border-neutral-200 dark:border-white/10">
               {sources.flatMap((src, srcIdx) => {
                 const preset = SHAREPOINT_SITE_PRESETS.find((s) => s.id === src.siteId);
                 const tagColor = preset?.badgeColor || 'blue';
@@ -759,34 +759,34 @@ export function ConnectionConfigModal() {
                   return (
                     <div
                       key={`${src.id}-${colName}`}
-                      className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs bg-neutral-50 border border-neutral-200"
+                      className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs bg-neutral-50 dark:bg-[#1a2436] border border-neutral-200 dark:border-white/10 text-neutral-800 dark:text-slate-200"
                     >
                       <span
                         className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase ${
                           tagColor === 'emerald'
-                            ? 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300'
                             : tagColor === 'purple'
-                            ? 'bg-purple-100 text-purple-800'
+                            ? 'bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300'
                             : tagColor === 'amber'
-                            ? 'bg-amber-100 text-amber-800'
+                            ? 'bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300'
                             : tagColor === 'cyan'
-                            ? 'bg-cyan-100 text-cyan-800'
-                            : 'bg-blue-100 text-blue-800'
+                            ? 'bg-cyan-100 dark:bg-cyan-950/80 text-cyan-800 dark:text-cyan-300'
+                            : 'bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300'
                         }`}
                       >
                         {src.listName.slice(0, 12)}
                       </span>
-                      <span className="font-medium text-neutral-800">
+                      <span className="font-medium text-neutral-800 dark:text-slate-200">
                         {colDef?.displayName || colName}
                       </span>
 
                       {isOverallFirst && (
-                        <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-amber-100 text-amber-800 border border-amber-300">
+                        <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700">
                           Sticky Left
                         </span>
                       )}
                       {isOverallLast && (
-                        <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-indigo-100 text-indigo-800 border border-indigo-300">
+                        <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-800 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">
                           Sticky Right
                         </span>
                       )}
@@ -799,7 +799,7 @@ export function ConnectionConfigModal() {
         </div>
 
         {/* 3. Modal Footer: Actions & Delete */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-neutral-200 bg-neutral-50/80 flex-shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-t border-neutral-200 dark:border-white/10 bg-neutral-50/80 dark:bg-[#0f172a] flex-shrink-0">
           <div>
             {isEditing && (
               <>
@@ -807,13 +807,13 @@ export function ConnectionConfigModal() {
                   <button
                     type="button"
                     onClick={() => setShowDeleteConfirm(true)}
-                    className="text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+                    className="text-xs font-medium text-red-600 dark:text-red-400 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/60 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
                   >
                     Delete Menu
                   </button>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-red-600 font-medium">Delete this menu?</span>
+                    <span className="text-xs text-red-600 dark:text-red-400 font-medium">Delete this menu?</span>
                     <button
                       type="button"
                       onClick={handleDelete}
@@ -824,7 +824,7 @@ export function ConnectionConfigModal() {
                     <button
                       type="button"
                       onClick={() => setShowDeleteConfirm(false)}
-                      className="px-2 py-1 text-xs font-medium text-neutral-600 hover:bg-neutral-200 rounded-lg cursor-pointer"
+                      className="px-2 py-1 text-xs font-medium text-neutral-600 dark:text-slate-400 hover:bg-neutral-200 dark:hover:bg-white/10 rounded-lg cursor-pointer"
                     >
                       Cancel
                     </button>
@@ -838,7 +838,7 @@ export function ConnectionConfigModal() {
             <button
               type="button"
               onClick={closeModal}
-              className="px-4 py-2 text-xs font-semibold text-neutral-700 hover:bg-neutral-200/80 rounded-xl transition-colors cursor-pointer"
+              className="px-4 py-2 text-xs font-semibold text-neutral-700 dark:text-slate-300 hover:bg-neutral-200/80 dark:hover:bg-white/10 rounded-xl transition-colors cursor-pointer"
             >
               Cancel
             </button>

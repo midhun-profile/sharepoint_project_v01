@@ -278,10 +278,10 @@ export function NewRowModal({
             onChange={(e) => handleFieldChange(key, e.target.value)}
             maxLength={col.text?.maxLength || 255}
             placeholder={`Enter ${col.displayName || col.name}...`}
-            className={`w-full px-3 py-2 text-xs rounded-lg border bg-white outline-none transition-all ${
+            className={`w-full px-3 py-2 text-xs rounded-lg border bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 outline-none transition-all ${
               error
-                ? 'border-rose-300 focus:border-rose-500 ring-1 ring-rose-500/20'
-                : 'border-neutral-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10'
+                ? 'border-rose-300 dark:border-rose-700 focus:border-rose-500 ring-1 ring-rose-500/20'
+                : 'border-neutral-300 dark:border-white/15 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10'
             }`}
           />
         );
@@ -294,10 +294,10 @@ export function NewRowModal({
             onChange={(e) => handleFieldChange(key, e.target.value)}
             rows={3}
             placeholder={`Enter detailed description for ${col.displayName || col.name}...`}
-            className={`w-full px-3 py-2 text-xs rounded-lg border bg-white outline-none transition-all resize-y ${
+            className={`w-full px-3 py-2 text-xs rounded-lg border bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 outline-none transition-all resize-y ${
               error
-                ? 'border-rose-300 focus:border-rose-500 ring-1 ring-rose-500/20'
-                : 'border-neutral-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10'
+                ? 'border-rose-300 dark:border-rose-700 focus:border-rose-500 ring-1 ring-rose-500/20'
+                : 'border-neutral-300 dark:border-white/15 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10'
             }`}
           />
         );
@@ -317,7 +317,7 @@ export function NewRowModal({
                   className={`px-2.5 py-1 text-xs rounded-md border font-medium transition-colors cursor-pointer ${
                     isSelected
                       ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
-                      : 'bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-50'
+                      : 'bg-white dark:bg-[#1a2436] text-neutral-700 dark:text-slate-200 border-neutral-300 dark:border-white/15 hover:bg-neutral-50 dark:hover:bg-white/5'
                   }`}
                 >
                   {choice}
@@ -348,15 +348,15 @@ export function NewRowModal({
                   }}
                   className={`px-2.5 py-1 text-xs rounded-md border font-medium transition-colors flex items-center gap-1 cursor-pointer ${
                     isSelected
-                      ? 'bg-blue-50 text-blue-700 border-blue-300 ring-1 ring-blue-400/20'
-                      : 'bg-white text-neutral-600 border-neutral-300 hover:bg-neutral-50'
+                      ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-800 ring-1 ring-blue-400/20'
+                      : 'bg-white dark:bg-[#1a2436] text-neutral-600 dark:text-slate-300 border-neutral-300 dark:border-white/15 hover:bg-neutral-50 dark:hover:bg-white/5'
                   }`}
                 >
                   <span
                     className={`w-3 h-3 rounded-xs border flex items-center justify-center text-[9px] ${
                       isSelected
                         ? 'bg-blue-600 text-white border-blue-600'
-                        : 'border-neutral-400 bg-white'
+                        : 'border-neutral-400 dark:border-slate-500 bg-white dark:bg-[#1a2436]'
                     }`}
                   >
                     {isSelected && '✓'}
@@ -384,16 +384,16 @@ export function NewRowModal({
         return (
           <div className="space-y-2">
             {/* Selected persons */}
-            <div className="flex flex-wrap gap-1.5 min-h-[32px] p-1.5 bg-neutral-50 rounded-lg border border-neutral-200">
+            <div className="flex flex-wrap gap-1.5 min-h-[32px] p-1.5 bg-neutral-50 dark:bg-[#0f172a] rounded-lg border border-neutral-200 dark:border-white/10">
               {currentPersons.length === 0 ? (
-                <span className="text-xs text-neutral-400 italic py-0.5 px-1">
+                <span className="text-xs text-neutral-400 dark:text-slate-500 italic py-0.5 px-1">
                   No person assigned
                 </span>
               ) : (
                 currentPersons.map((p, idx) => (
                   <div
                     key={p.email || idx}
-                    className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white border border-neutral-200 shadow-2xs text-xs text-neutral-800"
+                    className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white dark:bg-[#1a2436] border border-neutral-200 dark:border-white/10 shadow-2xs text-xs text-neutral-800 dark:text-slate-100"
                   >
                     {p.avatarUrl ? (
                       <img
@@ -403,7 +403,7 @@ export function NewRowModal({
                         className="w-4 h-4 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-4 h-4 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-[9px] font-bold">
+                      <div className="w-4 h-4 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 flex items-center justify-center text-[9px] font-bold">
                         {p.displayName.charAt(0)}
                       </div>
                     )}
@@ -420,7 +420,7 @@ export function NewRowModal({
                           handleFieldChange(key, null);
                         }
                       }}
-                      className="text-neutral-400 hover:text-rose-600 ml-0.5"
+                      className="text-neutral-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 ml-0.5"
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -431,7 +431,7 @@ export function NewRowModal({
 
             {/* Persona picker selector */}
             <div className="flex items-center gap-1 overflow-x-auto pb-1 text-xs">
-              <span className="text-[10px] text-neutral-400 uppercase font-semibold flex-shrink-0 mr-1">
+              <span className="text-[10px] text-neutral-400 dark:text-slate-500 uppercase font-semibold flex-shrink-0 mr-1">
                 Assign:
               </span>
               {DEMO_PERSONAS.map((person) => {
@@ -452,8 +452,8 @@ export function NewRowModal({
                     disabled={isSelected}
                     className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] whitespace-nowrap transition-colors flex-shrink-0 ${
                       isSelected
-                        ? 'bg-neutral-100 text-neutral-400 border-neutral-200 opacity-60 cursor-not-allowed'
-                        : 'bg-white text-neutral-700 border-neutral-300 hover:border-blue-400 hover:text-blue-600 cursor-pointer'
+                        ? 'bg-neutral-100 dark:bg-white/5 text-neutral-400 dark:text-slate-500 border-neutral-200 dark:border-white/10 opacity-60 cursor-not-allowed'
+                        : 'bg-white dark:bg-[#1a2436] text-neutral-700 dark:text-slate-200 border-neutral-300 dark:border-white/15 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer'
                     }`}
                   >
                     <Plus className="w-2.5 h-2.5" />
@@ -475,10 +475,10 @@ export function NewRowModal({
               type="date"
               value={dateVal}
               onChange={(e) => handleFieldChange(key, e.target.value)}
-              className={`w-full px-3 py-2 text-xs rounded-lg border bg-white outline-none transition-all ${
+              className={`w-full px-3 py-2 text-xs rounded-lg border bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 outline-none transition-all ${
                 error
-                  ? 'border-rose-300 focus:border-rose-500'
-                  : 'border-neutral-300 focus:border-blue-500'
+                  ? 'border-rose-300 dark:border-rose-700 focus:border-rose-500'
+                  : 'border-neutral-300 dark:border-white/15 focus:border-blue-500'
               }`}
             />
           </div>
@@ -493,7 +493,7 @@ export function NewRowModal({
         return (
           <div className="relative">
             {isCurr && (
-              <span className="absolute left-3 top-2.5 text-xs text-neutral-400 font-semibold select-none">
+              <span className="absolute left-3 top-2.5 text-xs text-neutral-400 dark:text-slate-500 font-semibold select-none">
                 {col.currency?.currencySymbol || '$'}
               </span>
             )}
@@ -503,16 +503,16 @@ export function NewRowModal({
               value={value ?? ''}
               onChange={(e) => handleFieldChange(key, e.target.value)}
               placeholder={isCurr ? '0.00' : isPercent ? 'e.g. 75' : 'Enter number...'}
-              className={`w-full py-2 text-xs rounded-lg border bg-white outline-none transition-all ${
+              className={`w-full py-2 text-xs rounded-lg border bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 outline-none transition-all ${
                 isCurr ? 'pl-7 pr-3' : isPercent ? 'pl-3 pr-7' : 'px-3'
               } ${
                 error
-                  ? 'border-rose-300 focus:border-rose-500 ring-1 ring-rose-500/20'
-                  : 'border-neutral-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10'
+                  ? 'border-rose-300 dark:border-rose-700 focus:border-rose-500 ring-1 ring-rose-500/20'
+                  : 'border-neutral-300 dark:border-white/15 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10'
               }`}
             />
             {isPercent && (
-              <span className="absolute right-3 top-2.5 text-xs text-neutral-400 font-semibold select-none">
+              <span className="absolute right-3 top-2.5 text-xs text-neutral-400 dark:text-slate-500 font-semibold select-none">
                 %
               </span>
             )}
@@ -529,7 +529,7 @@ export function NewRowModal({
               type="button"
               onClick={() => handleFieldChange(key, !isChecked)}
               className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                isChecked ? 'bg-emerald-600' : 'bg-neutral-300'
+                isChecked ? 'bg-emerald-600' : 'bg-neutral-300 dark:bg-neutral-700'
               }`}
             >
               <span
@@ -538,7 +538,7 @@ export function NewRowModal({
                 }`}
               />
             </button>
-            <span className="text-xs font-medium text-neutral-700">
+            <span className="text-xs font-medium text-neutral-700 dark:text-slate-200">
               {isChecked ? 'Yes (True)' : 'No (False)'}
             </span>
           </div>
@@ -553,9 +553,9 @@ export function NewRowModal({
             : { url: String(value || ''), description: '' };
 
         return (
-          <div className="space-y-2 p-2.5 bg-neutral-50 rounded-lg border border-neutral-200">
+          <div className="space-y-2 p-2.5 bg-neutral-50 dark:bg-[#0f172a] rounded-lg border border-neutral-200 dark:border-white/10">
             <div>
-              <label className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block mb-0.5">
+              <label className="text-[10px] font-semibold text-neutral-500 dark:text-slate-400 uppercase tracking-wider block mb-0.5">
                 Target URL
               </label>
               <input
@@ -565,11 +565,11 @@ export function NewRowModal({
                   handleFieldChange(key, { ...linkObj, url: e.target.value })
                 }
                 placeholder="https://contoso.sharepoint.com/..."
-                className="w-full px-2.5 py-1.5 text-xs rounded border border-neutral-300 bg-white focus:border-blue-500 outline-none"
+                className="w-full px-2.5 py-1.5 text-xs rounded border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 focus:border-blue-500 outline-none"
               />
             </div>
             <div>
-              <label className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block mb-0.5">
+              <label className="text-[10px] font-semibold text-neutral-500 dark:text-slate-400 uppercase tracking-wider block mb-0.5">
                 Display Text / Description
               </label>
               <input
@@ -579,7 +579,7 @@ export function NewRowModal({
                   handleFieldChange(key, { ...linkObj, description: e.target.value })
                 }
                 placeholder="Link Title"
-                className="w-full px-2.5 py-1.5 text-xs rounded border border-neutral-300 bg-white focus:border-blue-500 outline-none"
+                className="w-full px-2.5 py-1.5 text-xs rounded border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 focus:border-blue-500 outline-none"
               />
             </div>
           </div>
@@ -599,10 +599,10 @@ export function NewRowModal({
             : 'Item Asset';
 
         return (
-          <div className="space-y-2 p-2.5 bg-neutral-50 rounded-lg border border-neutral-200">
+          <div className="space-y-2 p-2.5 bg-neutral-50 dark:bg-[#0f172a] rounded-lg border border-neutral-200 dark:border-white/10">
             <div className="flex items-center gap-3">
               {currentUrl ? (
-                <div className="w-14 h-14 rounded-lg overflow-hidden border border-neutral-300 bg-white flex-shrink-0 shadow-2xs">
+                <div className="w-14 h-14 rounded-lg overflow-hidden border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] flex-shrink-0 shadow-2xs">
                   <img
                     src={currentUrl}
                     alt={currentName}
@@ -611,7 +611,7 @@ export function NewRowModal({
                   />
                 </div>
               ) : (
-                <div className="w-14 h-14 rounded-lg border border-dashed border-neutral-300 flex items-center justify-center bg-white flex-shrink-0 text-neutral-400">
+                <div className="w-14 h-14 rounded-lg border border-dashed border-neutral-300 dark:border-white/15 flex items-center justify-center bg-white dark:bg-[#1a2436] flex-shrink-0 text-neutral-400 dark:text-slate-500">
                   <ImageIcon className="w-5 h-5" />
                 </div>
               )}
@@ -623,7 +623,7 @@ export function NewRowModal({
                     handleFieldChange(key, { url: e.target.value, name: currentName })
                   }
                   placeholder="https://images.unsplash.com/..."
-                  className="w-full px-2 py-1 text-xs rounded border border-neutral-300 bg-white focus:border-blue-500 outline-none"
+                  className="w-full px-2 py-1 text-xs rounded border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 focus:border-blue-500 outline-none"
                 />
                 <input
                   type="text"
@@ -632,14 +632,14 @@ export function NewRowModal({
                     handleFieldChange(key, { url: currentUrl, name: e.target.value })
                   }
                   placeholder="Asset label / file name..."
-                  className="w-full px-2 py-1 text-xs rounded border border-neutral-300 bg-white focus:border-blue-500 outline-none"
+                  className="w-full px-2 py-1 text-xs rounded border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 focus:border-blue-500 outline-none"
                 />
               </div>
             </div>
 
             {/* Quick Presets */}
             <div className="pt-1">
-              <span className="text-[10px] text-neutral-400 uppercase font-semibold block mb-1">
+              <span className="text-[10px] text-neutral-400 dark:text-slate-500 uppercase font-semibold block mb-1">
                 Sample Image Presets:
               </span>
               <div className="flex flex-wrap gap-1">
@@ -650,7 +650,7 @@ export function NewRowModal({
                     onClick={() =>
                       handleFieldChange(key, { url: preset.url, name: preset.name })
                     }
-                    className="px-2 py-0.5 rounded border border-neutral-200 bg-white text-[10px] text-neutral-600 hover:border-blue-400 hover:text-blue-600 transition-colors cursor-pointer"
+                    className="px-2 py-0.5 rounded border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#1a2436] text-[10px] text-neutral-600 dark:text-slate-300 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
                   >
                     {preset.name}
                   </button>
@@ -669,7 +669,7 @@ export function NewRowModal({
             <select
               value={value ?? ''}
               onChange={(e) => handleFieldChange(key, e.target.value)}
-              className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white focus:border-blue-500 outline-none"
+              className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 focus:border-blue-500 outline-none"
             >
               <option value="">-- Select related entity --</option>
               {DEMO_LOOKUP_OPTIONS.map((opt) => (
@@ -689,7 +689,7 @@ export function NewRowModal({
           : [];
 
         return (
-          <div className="space-y-1.5 p-2 bg-neutral-50 rounded-lg border border-neutral-200">
+          <div className="space-y-1.5 p-2 bg-neutral-50 dark:bg-[#0f172a] rounded-lg border border-neutral-200 dark:border-white/10">
             <div className="flex flex-wrap gap-1">
               {DEMO_TAXONOMY_TAGS.map((tag) => {
                 const isSelected = selectedTax.includes(tag);
@@ -706,7 +706,7 @@ export function NewRowModal({
                     className={`px-2 py-0.5 rounded-full text-[11px] border font-medium transition-colors flex items-center gap-1 cursor-pointer ${
                       isSelected
                         ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-100'
+                        : 'bg-white dark:bg-[#1a2436] text-neutral-700 dark:text-slate-200 border-neutral-300 dark:border-white/15 hover:bg-neutral-100 dark:hover:bg-white/5'
                     }`}
                   >
                     <Tag className="w-2.5 h-2.5" />
@@ -726,7 +726,7 @@ export function NewRowModal({
             type="text"
             value={value ?? ''}
             onChange={(e) => handleFieldChange(key, e.target.value)}
-            className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 bg-white focus:border-blue-500 outline-none"
+            className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-white/15 bg-white dark:bg-[#1a2436] text-neutral-900 dark:text-slate-100 placeholder:text-neutral-400 dark:placeholder:text-slate-500 focus:border-blue-500 outline-none"
             placeholder="Enter value..."
           />
         );
@@ -738,28 +738,28 @@ export function NewRowModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="new-row-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/40 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/40 dark:bg-black/75 backdrop-blur-xs animate-in fade-in duration-150"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-2xl shadow-2xl border border-neutral-200/90 w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden text-neutral-900"
+        className="bg-white dark:bg-[#131d2e] rounded-2xl shadow-2xl border border-neutral-200/90 dark:border-white/10 w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden text-neutral-900 dark:text-slate-100"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-200 bg-neutral-50/70 flex-shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-200 dark:border-white/10 bg-neutral-50/70 dark:bg-[#0f172a]/70 flex-shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
+            <div className="p-2 bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 rounded-lg">
               <Plus className="w-4 h-4" />
             </div>
             <div>
-              <h3 id="new-row-modal-title" className="text-sm font-bold text-neutral-900 flex items-center gap-2">
+              <h3 id="new-row-modal-title" className="text-sm font-bold text-neutral-900 dark:text-slate-100 flex items-center gap-2">
                 <span>New Item</span>
                 {listTitle && (
-                  <span className="text-xs font-normal text-neutral-500">
+                  <span className="text-xs font-normal text-neutral-500 dark:text-slate-400">
                     in <strong>{listTitle}</strong>
                   </span>
                 )}
               </h3>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 dark:text-slate-400">
                 Enter values to create a new row in this SharePoint list
               </p>
             </div>
@@ -768,7 +768,7 @@ export function NewRowModal({
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-200/60 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-neutral-400 dark:text-slate-400 hover:text-neutral-700 dark:hover:text-slate-200 hover:bg-neutral-200/60 dark:hover:bg-white/10 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -776,12 +776,12 @@ export function NewRowModal({
 
         {/* Scrollable Form Body */}
         <form id="new-row-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-5 space-y-4">
-          <div className="text-xs text-neutral-500 pb-1 border-b border-neutral-100 flex items-center justify-between">
+          <div className="text-xs text-neutral-500 dark:text-slate-400 pb-1 border-b border-neutral-100 dark:border-white/10 flex items-center justify-between">
             <span>
               <strong>{visibleColumns.length}</strong> visible view columns
               {hiddenColumns.length > 0 && ` • ${hiddenColumns.length} hidden schema fields available`}
             </span>
-            <span className="text-[11px] text-neutral-400">Schema-driven validation</span>
+            <span className="text-[11px] text-neutral-400 dark:text-slate-400">Schema-driven validation</span>
           </div>
 
           {/* Section 1: Visible / Selected View Columns */}
@@ -794,7 +794,7 @@ export function NewRowModal({
               return (
                 <div key={key} className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold text-neutral-800 flex items-center gap-1.5">
+                    <label className="text-xs font-semibold text-neutral-800 dark:text-slate-200 flex items-center gap-1.5">
                       <span>{col.displayName || col.name}</span>
                       {(col.required || col.name === 'Title') && (
                         <span className="text-rose-500" title="Required field">*</span>
@@ -802,11 +802,11 @@ export function NewRowModal({
                     </label>
                     <div className="flex items-center gap-1.5">
                       {col.sourceListName && (
-                        <span className="text-[9px] font-medium px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">
+                        <span className="text-[9px] font-medium px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-white/5 text-neutral-600 dark:text-slate-300 border border-neutral-200 dark:border-white/10">
                           {col.sourceListName}
                         </span>
                       )}
-                      <span className="text-[10px] font-mono text-neutral-400 uppercase">
+                      <span className="text-[10px] font-mono text-neutral-400 dark:text-slate-400 uppercase">
                         {fieldType}
                       </span>
                     </div>
@@ -815,7 +815,7 @@ export function NewRowModal({
                   {renderFieldInput(col)}
 
                   {error && (
-                    <div className="flex items-center gap-1 text-[11px] text-rose-600 mt-1">
+                    <div className="flex items-center gap-1 text-[11px] text-rose-600 dark:text-rose-400 mt-1">
                       <AlertCircle className="w-3 h-3 flex-shrink-0" />
                       <span>{error}</span>
                     </div>
@@ -827,26 +827,26 @@ export function NewRowModal({
 
           {/* Section 2: Hidden Schema Fields (revealed via Eye toggle) */}
           {hiddenColumns.length > 0 && (
-            <div className="pt-3 border-t border-neutral-200/80">
+            <div className="pt-3 border-t border-neutral-200/80 dark:border-white/10">
               <button
                 type="button"
                 onClick={() => setShowHiddenFields((prev) => !prev)}
-                className="w-full flex items-center justify-between px-3.5 py-2.5 bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200 rounded-xl transition-all text-left group cursor-pointer"
+                className="w-full flex items-center justify-between px-3.5 py-2.5 bg-neutral-50 dark:bg-[#0f172a] hover:bg-neutral-100/80 dark:hover:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-xl transition-all text-left group cursor-pointer"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-600 group-hover:text-blue-600 group-hover:border-blue-300 transition-colors">
+                  <div className="p-1.5 rounded-lg bg-white dark:bg-[#1a2436] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:border-blue-300 transition-colors">
                     {showHiddenFields ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-neutral-800 flex items-center gap-1.5">
+                    <div className="text-xs font-semibold text-neutral-800 dark:text-slate-200 flex items-center gap-1.5">
                       <span>
                         {showHiddenFields ? 'Hide' : 'Show'} Additional Schema Fields ({hiddenColumns.length})
                       </span>
-                      <span className="text-[10px] font-medium px-1.5 py-0.2 rounded bg-neutral-200/70 text-neutral-600">
+                      <span className="text-[10px] font-medium px-1.5 py-0.2 rounded bg-neutral-200/70 dark:bg-white/10 text-neutral-600 dark:text-slate-300">
                         Not in current table view
                       </span>
                     </div>
-                    <p className="text-[11px] text-neutral-500">
+                    <p className="text-[11px] text-neutral-500 dark:text-slate-400">
                       {showHiddenFields
                         ? 'Click to collapse hidden schema columns'
                         : 'Click eye to reveal and enter data for unselected list columns'}
@@ -854,15 +854,15 @@ export function NewRowModal({
                   </div>
                 </div>
 
-                <div className="text-xs font-semibold text-blue-600 group-hover:underline flex items-center gap-1">
+                <div className="text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:underline flex items-center gap-1">
                   {showHiddenFields ? 'Collapse' : 'Expand'}
                 </div>
               </button>
 
               {showHiddenFields && (
-                <div className="mt-3 p-4 bg-neutral-50/50 rounded-xl border border-dashed border-neutral-300 space-y-4 animate-in fade-in duration-150">
-                  <div className="text-[11px] font-medium text-neutral-500 flex items-center gap-1.5 pb-2 border-b border-neutral-200/80">
-                    <Eye className="w-3.5 h-3.5 text-neutral-400" />
+                <div className="mt-3 p-4 bg-neutral-50/50 dark:bg-[#0b1120]/60 rounded-xl border border-dashed border-neutral-300 dark:border-white/15 space-y-4 animate-in fade-in duration-150">
+                  <div className="text-[11px] font-medium text-neutral-500 dark:text-slate-400 flex items-center gap-1.5 pb-2 border-b border-neutral-200/80 dark:border-white/10">
+                    <Eye className="w-3.5 h-3.5 text-neutral-400 dark:text-slate-500" />
                     <span>Full Schema Additional Fields (Saved with row data)</span>
                   </div>
 
@@ -874,7 +874,7 @@ export function NewRowModal({
                     return (
                       <div key={key} className="space-y-1">
                         <div className="flex items-center justify-between">
-                          <label className="text-xs font-semibold text-neutral-800 flex items-center gap-1.5">
+                          <label className="text-xs font-semibold text-neutral-800 dark:text-slate-200 flex items-center gap-1.5">
                             <span>{col.displayName || col.name}</span>
                             {col.required && (
                               <span className="text-rose-500" title="Required field">*</span>
@@ -882,11 +882,11 @@ export function NewRowModal({
                           </label>
                           <div className="flex items-center gap-1.5">
                             {col.sourceListName && (
-                              <span className="text-[9px] font-medium px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">
+                              <span className="text-[9px] font-medium px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-white/5 text-neutral-600 dark:text-slate-300 border border-neutral-200 dark:border-white/10">
                                 {col.sourceListName}
                               </span>
                             )}
-                            <span className="text-[10px] font-mono text-neutral-400 uppercase">
+                            <span className="text-[10px] font-mono text-neutral-400 dark:text-slate-400 uppercase">
                               {fieldType}
                             </span>
                           </div>
@@ -895,7 +895,7 @@ export function NewRowModal({
                         {renderFieldInput(col)}
 
                         {error && (
-                          <div className="flex items-center gap-1 text-[11px] text-rose-600 mt-1">
+                          <div className="flex items-center gap-1 text-[11px] text-rose-600 dark:text-rose-400 mt-1">
                             <AlertCircle className="w-3 h-3 flex-shrink-0" />
                             <span>{error}</span>
                           </div>
@@ -910,11 +910,11 @@ export function NewRowModal({
         </form>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-5 py-3.5 bg-neutral-50 border-t border-neutral-200 flex-shrink-0">
+        <div className="flex items-center justify-between px-5 py-3.5 bg-neutral-50 dark:bg-[#0f172a] border-t border-neutral-200 dark:border-white/10 flex-shrink-0">
           <button
             type="button"
             onClick={onClose}
-            className="px-3.5 py-1.5 rounded-lg border border-neutral-300 text-xs font-medium text-neutral-700 hover:bg-white transition-colors cursor-pointer"
+            className="px-3.5 py-1.5 rounded-lg border border-neutral-300 dark:border-white/15 text-xs font-medium text-neutral-700 dark:text-slate-200 hover:bg-white dark:hover:bg-white/10 transition-colors cursor-pointer"
           >
             Cancel
           </button>

@@ -6,6 +6,7 @@ import { SHAREPOINT_SITE_PRESETS } from '../../data/defaultConnections';
 import { AdaptiveSharePointTable } from '../table/AdaptiveSharePointTable';
 import { SharePointSidebar } from '../sidebar/SharePointSidebar';
 import { ConnectionConfigModal } from '../sidebar/ConnectionConfigModal';
+import { ThemeToggle } from '../common/ThemeToggle';
 import { useConnectionsStore } from '../../state/connectionsStore';
 import { useDemoDataStore } from '../../state/demoDataStore';
 import type {
@@ -153,13 +154,13 @@ export function DepartmentTableView() {
   // Handle department not found
   if (!currentDepartment) {
     return (
-      <div className="min-h-screen w-screen flex flex-col items-center justify-center p-6 bg-neutral-100 font-sans text-neutral-900">
-        <div className="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm max-w-md text-center space-y-4">
-          <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto">
+      <div className="min-h-screen w-screen flex flex-col items-center justify-center p-6 bg-neutral-100 dark:bg-[#0b1120] font-sans text-neutral-900 dark:text-slate-100">
+        <div className="bg-white dark:bg-[#131d2e] p-8 rounded-2xl border border-neutral-200 dark:border-white/10 shadow-sm max-w-md text-center space-y-4">
+          <div className="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
             <AlertCircle className="w-6 h-6" />
           </div>
-          <h2 className="text-base font-bold text-neutral-900">Department Not Found</h2>
-          <p className="text-xs text-neutral-500">
+          <h2 className="text-base font-bold text-neutral-900 dark:text-slate-100">Department Not Found</h2>
+          <p className="text-xs text-neutral-500 dark:text-slate-400">
             The department workspace you requested does not exist or was removed.
           </p>
           <button
@@ -175,31 +176,31 @@ export function DepartmentTableView() {
   }
 
   return (
-    <div className="h-screen w-screen flex overflow-hidden bg-neutral-100/70 font-sans text-neutral-900 antialiased">
+    <div className="h-screen w-screen flex overflow-hidden bg-neutral-100/70 dark:bg-[#0b1120] font-sans text-neutral-900 dark:text-slate-100 antialiased">
       {/* 1. Left Collapsible Sidebar Navigation with Multi-Source Menus Scoped to This Department */}
       <SharePointSidebar />
 
       {/* 2. Main Content Area */}
       <main className="flex-1 flex flex-col h-screen min-w-0 overflow-y-auto">
         {/* Top Breadcrumb & Department Header Bar */}
-        <header className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 px-4 sm:px-6 py-2.5 flex items-center justify-between flex-shrink-0 shadow-2xs">
+        <header className="sticky top-0 z-20 bg-white/95 dark:bg-[#131d2e]/95 backdrop-blur-md border-b border-neutral-200/80 dark:border-white/10 px-4 sm:px-6 py-2.5 flex items-center justify-between flex-shrink-0 shadow-2xs">
           <div className="flex items-center gap-3 min-w-0">
             {/* Back to main cards page button */}
             <Link
               to="/"
               id="btn-back-to-departments"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer flex-shrink-0 border border-neutral-200/80 shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-600 dark:text-slate-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors cursor-pointer flex-shrink-0 border border-neutral-200/80 dark:border-white/10 shadow-2xs"
               title="Return to Departments Directory"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>All Departments</span>
             </Link>
 
-            <div className="h-4 w-px bg-neutral-200 flex-shrink-0" />
+            <div className="h-4 w-px bg-neutral-200 dark:bg-white/10 flex-shrink-0" />
 
             {/* Department Thumbnail & Title */}
             <div className="flex items-center gap-2 min-w-0">
-              <div className="w-7 h-7 rounded-lg overflow-hidden flex-shrink-0 border border-neutral-200 shadow-2xs">
+              <div className="w-7 h-7 rounded-lg overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-white/10 shadow-2xs">
                 <img
                   src={currentDepartment.imageUrl}
                   alt={currentDepartment.name}
@@ -208,10 +209,10 @@ export function DepartmentTableView() {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-xs font-bold text-neutral-900 truncate">
+                  <h1 className="text-xs font-bold text-neutral-900 dark:text-slate-100 truncate">
                     {currentDepartment.name}
                   </h1>
-                  <span className="hidden sm:inline-block px-1.5 py-0.2 rounded text-[10px] font-semibold bg-neutral-100 text-neutral-600 border border-neutral-200/80">
+                  <span className="hidden sm:inline-block px-1.5 py-0.2 rounded text-[10px] font-semibold bg-neutral-100 dark:bg-white/5 text-neutral-600 dark:text-slate-300 border border-neutral-200/80 dark:border-white/10">
                     {connections.length} {connections.length === 1 ? 'View' : 'Views'}
                   </span>
                 </div>
@@ -219,9 +220,10 @@ export function DepartmentTableView() {
             </div>
           </div>
 
-          {/* Right Action: Quick switch or view stats */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-[11px] text-neutral-400 hidden md:inline">
+          {/* Right Action: Quick switch or view stats + ThemeToggle */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <ThemeToggle compact />
+            <span className="text-[11px] text-neutral-400 dark:text-slate-500 hidden md:inline">
               Workspace active
             </span>
           </div>
